@@ -2,6 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../models/course.model';
 import { Router } from '@angular/router';
+import { WishlistService } from '../services/wishlist.service';
 
 @Component({
   selector: 'app-course-card',
@@ -14,13 +15,20 @@ export class CourseCardComponent {
   @Output() courseBooked = new EventEmitter<any>();
   @Output() wishlistAdded = new EventEmitter<any>();
 
-  constructor(private router: Router) {}
+
+  isInWishlist: boolean = false;
+
+  constructor(private router: Router, private wishlistService: WishlistService) {}
   onCourseBooked(): void {
     this.courseBooked.emit(this.course);
   }
 
-  onAddToWishlist(): void {
-    this.wishlistAdded.emit(this.course);
+  onAddToWishlist() {
+    if (this.wishlistService.addToWishList(this.course!.id.toString())) {
+      this.wishlistAdded.emit(this.course);
+    } else {
+      alert('Course is already in wishlist');
+    }
   }
 
   goToDetails(courseId: number): void {

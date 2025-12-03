@@ -36,6 +36,7 @@ button:disabled {
 }
 
 button:disabled:hover {
+  /* !important ovrerides your global button:hover */
   background-color: #7f8389 !important;
   cursor: not-allowed;
 }

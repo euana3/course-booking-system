@@ -13,7 +13,8 @@
         <div class="sale-banner">On Sale!</div>
     }
     <button (click)="goToDetails(course.id)">See details</button>
-    <button (click)="onAddToWishlist()">Add to Wishlist</button>
+    <button (click)="onAddToWishlist()"> {{ isInWishlist ? 'In Wishlist' : 'Add to Wishlist'}}
+    </button>
     <button [disabled]="course.soldOut" (click)="onCourseBooked()">Book course</button>
 </div>
 }
