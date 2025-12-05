@@ -6,7 +6,8 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
 export const routes: Routes = [
     // Our two main routes:
-    { path: '', redirectTo: 'courses', pathMatch: 'full' },
+    { path: '', redirectTo: 'courses', pathMatch: 'full' }, //set default route
+    
     { path: 'courses', component: CoursesListComponent },
     { path: 'courses/:id', component: CourseDetailComponent },
     { path: 'about', component: AboutComponent },

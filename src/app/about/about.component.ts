@@ -1,3 +1,4 @@
+//ng generate component about
 import { Component } from '@angular/core';
 
 @Component({

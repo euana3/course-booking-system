@@ -6,14 +6,18 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class WishlistService {
+    //Set for uniqueness for courseId. 'Set' automatically rejects duplicates
     private wishlist = new Set<string>();
+
     private wishlistSubject = new BehaviorSubject<string[]>([]);
 
     wishlist$ = this.wishlistSubject.asObservable();
 
+    //Service manages state -  checks 'has(courseId) before adding and 
+    // returns true of false so component knows if it succeeded
     addToWishList(courseId: string): boolean {
         if (this.wishlist.has(courseId)) {
-            return false; // Already in wishlist
+            return false; // Already in wishlist - prevent duplicates
         }
 
         this.wishlist.add(courseId);

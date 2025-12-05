@@ -1,3 +1,4 @@
+// ng generate component sign-up-form
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,8 +12,9 @@ import { Student } from '../models/student.model';
   templateUrl: './sign-up-form.component.html',
   styleUrl: './sign-up-form.component.css'
 })
+
 export class SignUpFormComponent implements OnInit {
-  signUpForm!: FormGroup;
+  signUpForm!: FormGroup; //assert non-null with ! operator
   submissionSuccess: boolean = false;
   submissionError: string = '';
   courses: Course[] = [];
@@ -32,6 +34,9 @@ export class SignUpFormComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error fetching courses:', err);
+        },
+        complete: () => { //it's a functional hook triggered when the Observable finishes emitting values normally, signaling the end of the data stream.
+          console.log('Finished fetching courses');
         }
       });
   }

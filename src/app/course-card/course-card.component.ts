@@ -23,11 +23,12 @@ export class CourseCardComponent {
     this.courseBooked.emit(this.course);
   }
 
+  // Component Uses Service to add to wishlist
   onAddToWishlist() {
     if (this.wishlistService.addToWishList(this.course!.id.toString())) {
       this.wishlistAdded.emit(this.course);
     } else {
-      alert('Course is already in wishlist');
+      alert('Course is already in your wishlist');
     }
   }
 
